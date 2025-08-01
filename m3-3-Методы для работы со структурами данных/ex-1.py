@@ -10,4 +10,7 @@ set_ |= {5}
 str_ += "5"
 
 
-print(list_, tuple_, set_, str_, sep="\n")
+# print(list_, tuple_, set_, str_, sep="\n")
+
+for item in {1, 2, 3}:
+    print(item)
