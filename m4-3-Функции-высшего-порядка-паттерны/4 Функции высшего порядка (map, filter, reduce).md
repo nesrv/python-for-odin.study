@@ -45,29 +45,6 @@ print(*b)
 print(*c)
 ```
 
-### Задача 2. Отфильтровать стоп-слова (союзы и предлоги) из строки.
-
-Аналогичным образом можно отфильтровать списки более сложных объектов:
-
-```python
-class Person:
-    def __init__(self, name, age):
-        self.name = name
-        self.age = age 
-         
-people = [ Person("Tom", 38), Person("Kate", 31), Person("Bob", 42), 
-        Person("Alice", 34),  Person("Sam", 25) ]
- 
-# фильтрация элементов, у которых age > 33
-view = filter(lambda p: p.age > 33, people)
-  
-for person in view:
-    print(f"Name: {person.name} Age: {person.age}")
-```
-
-В данном случае фильтруем список объектов Person, поэтому в функцию-условие/лямбда-выражение в качестве параметра передается каждый объект `Person` из списка. 
-
-Каждый объект `Person` хранит имя `(Name)` и возраст `(Age)`, и здесь выбираем всех `Person`, у которых возраст больше `33`.
 
 ## reduce
 
