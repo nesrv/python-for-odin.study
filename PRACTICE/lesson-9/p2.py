@@ -1,11 +1,17 @@
-def count_paths(x, y):
-    if x == y:
-        return 1
-    if x > y:
-        return 0
-    else:
-        return count_paths(x+1, y) + count_paths(x+3, y)
+f = open("file.txt", encoding='utf-8')  # ASCII
 
+s = f.read()
+s = s.split('; ')
+s = list(map(int, s))
+# print(sum(s) / len(s))
+
+
+lst = []
+for i in range(len(s)-1):
+    print(s[i], + s[i+1])  
     
-result = count_paths(1, 9) * count_paths(9, 17)
-print(f"Количество программ: {result}")
+    if s[i] % 3 == 0 or s[i+1] % 3 == 0:      
+        lst.append(s[i] + s[i+1])
+
+print(len(lst) , max(lst))
+open('txt.txt', 'a')
