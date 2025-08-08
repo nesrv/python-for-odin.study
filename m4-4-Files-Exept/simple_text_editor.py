@@ -26,8 +26,22 @@ open_btn.pack(pady=5)
 save_btn = tk.Button(root, text="Сохранить")
 save_btn.pack(pady=5)
 
+def count_lines():
+    content = text.get(1.0, tk.END)
+    lines = len(content.strip().split('\n'))
+    textbox.delete(0, tk.END)
+    textbox.insert(0, f"Количество строк: {lines}")
+
+# Кнопка ответ
+answer_btn = tk.Button(root, text="Ответ", command=count_lines)
+answer_btn.pack(pady=5)
+
 text = tk.Text(root, height=8, width=40)
 text.pack(pady=5)
+
+# Textbox
+textbox = tk.Entry(root, width=40)
+textbox.pack(pady=5)
 
 # Запускаем приложение
 root.mainloop()
