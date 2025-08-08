@@ -1,22 +1,34 @@
-text = '''   
-1. Последнее королевство 2015
-2. Рим 2005
-3. Версаль 2015
-4. Тюдоры 2007
-5. Террор 2018
-6. Человек в высоком замке 2015
-7. Белая королева 2013
-8. Братья по оружию 2001
-9. Медичи 2016
-10. Спартак 2010
-'''
+import tkinter as tk
 
-text = text.strip().splitlines()
+root = tk.Tk()
+root.title("Простой текстовый редактор")
+root.geometry("800x600")
 
-print(*text,sep='\n')
+text = tk.Text(root, height=8, width=40)
+text.pack(pady=50)
 
-line_count = len(text)
+text_2 = tk.Text(root, height=1, width=40)
+text_2.pack(padx=350)
 
-print(f"Количество строк: {line_count}")
-# print(f"Количество слов: {word_count}") # не считаем цифры и точки # isdigit isalnum
-# print(f"Число символов: {char_count}") # не считая пробелы
+
+def open_file():
+    f = open("fruit.txt", encoding='utf-8')
+    s = f.read()
+    text.insert(tk.END, s)
+          
+
+def count_words():
+    c = text.get("1.0", tk.END)
+    c = c.split()
+    text_2.insert(tk.END, len(c))
+   
+
+open_btn = tk.Button(root, text="Открыть файл", command=open_file)
+open_btn.pack(pady=5)
+
+btn_2 = tk.Button(root, text="Посчитать слова", command=count_words)
+btn_2.pack(pady=50)
+
+
+
+root.mainloop()
