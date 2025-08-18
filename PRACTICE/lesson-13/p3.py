@@ -17,6 +17,13 @@ import shutil
 
 # shutil.unpack_archive("archive.tar.gz", "new_folder-4")
 
-usage = shutil.disk_usage("c:\\")
-print(usage)
-print(f'{usage.total / (1024 ** 3) :.1f}')
+# usage = shutil.disk_usage("c:\\")
+# print(usage)
+# # print(f'{usage.total / (1024 ** 3) :.1f}')
+
+# print(shutil.which('python')) 
+
+try:
+    shutil.copy("txt3.txt", "backup")
+except FileNotFoundError:
+    print("файле не найден")
