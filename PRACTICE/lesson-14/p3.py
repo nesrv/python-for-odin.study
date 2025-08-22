@@ -1,34 +1,15 @@
-# Импорт всех классов и функций SQLAlchemy
 from sqlalchemy import *
 from sqlalchemy import MetaData
 
-# Создаем подключение к SQLite базе данных
 engine = create_engine('sqlite:///database.db')
-
-# Создаем объект метаданных для работы с таблицами
 metadata = MetaData()
 
-# Загружаем структуру таблицы 'users' из базы данных
-# autoload_with=engine - автоматически определяет колонки и типы
 users = Table('users', metadata, autoload_with=engine)
 
 # Получаем всех пользователей из базы данных
 
-# Открываем соединение с базой данных
-conn = engine.connect() 
-
-# Выполняем SQL запрос SELECT * FROM users
+conn = engine.connect()
 result = conn.execute(select(users))
-
-# Получаем все строки результата в виде списка
 all_users = result.fetchall()
 
-# Выводим всех пользователей на экран
-print("Все пользователи:")
-for user in all_users:  # Проходим по каждому пользователю
-    print(user)  # Печатаем данные пользователя
-
-# Закрываем соединение с базой данных
-conn.close()
-    
-print(*all_users, )
+print(*all_users, sep='\n')
