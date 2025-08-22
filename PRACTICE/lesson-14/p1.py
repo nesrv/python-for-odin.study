@@ -17,15 +17,20 @@ logger.setLevel(logging.DEBUG)  # Изменил на DEBUG для показа 
 # logger.error("Ошибка в программе")                    # КРАСНЫЙ
 # logger.critical("Критическая ошибка!")                # КРАСНЫЙ жирный
 
-def add_numbers(a,b):
+from typing import Union
+
+
+def add_numbers(a:Union[int, str, float], b:Union[int, str, float]) -> Union[float, None]:
     """Функция с примерами логгирования"""
     logger.debug(f"Начало выполнения add_numbers с параметрами: a={a}, b={b}") 
-    if type(a) != int or type(b) != int:            
+    # if type(a) != int or type(b) != int:            
+    if not isinstance(a, (int, float)) or not isinstance(b, (int, float)):            
         try:
-            a = int(a)
-            b = int(b)
-        except:
-            logger.error(f"Неудалось преобразовать к числу : a={type(a)}, b={type(b)}")   
+            logger.warning(f"Попытка преобразовать к числу : {a}={type(a)}, {b}={type(b)}")
+            a = float(a)
+            b = float(b)
+        except :
+            logger.critical(f"Неудалось преобразовать к числу : {a}={type(a)}, {b}={type(b)}")   
             return None    
             
     logger.info(f"Сложение чисел: {a} и {b}")
@@ -34,6 +39,21 @@ def add_numbers(a,b):
 logger.debug("Программа запущена")
 result = add_numbers(5, 3)
 logger.info(f"Результат: {result}")
+
 result = add_numbers(5, '30')
+logger.info(f"Результат: {result}")
 
 result = add_numbers("5.5", '30')
+logger.info(f"Результат: {result}")
+
+result = add_numbers("hello", '30')
+logger.info(f"Результат: {result}")
+
+name:str = "John"
+
+def add_a_b(a: int, b: int) -> float:
+    """Функция с примерами логгирования"""
+    logger.debug(f"Начало выполнения add_numbers с параметрами: a={a}, b={b}")
+    return a + b
+
+result =  add_a_b(5, 10)
