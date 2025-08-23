@@ -1,0 +1,1 @@
+сделай для books.db CRUD на fastapi для новичков
